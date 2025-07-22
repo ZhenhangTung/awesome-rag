@@ -1079,4 +1079,4 @@ FILCO通过基于词法和信息论方法识别有用的上下文，以及训练
 
 RetrievalAttention将长序列的 KV-Cache 压缩成可检索的向量仓库，推理时先用轻量级检索器挑出 Top-k 关键 token 的 KV，再让注意力只在这 k 个 token 上计算，复杂度从 O(n²) 降到 O(k·n)。实验显示在 128k 上下文任务上，解码延迟比 Flat/IVF 分别再降 4.9× 与 1.98×，显存占用仅为全 KV 的 1–3%，精度与全注意力持平。
 
-![](https://github.com/user-attachments/assets/39f64206-3afc-47c9-8943-9f78c627277f)
+![](https://i.imgur.com/p7OeWYq.png)

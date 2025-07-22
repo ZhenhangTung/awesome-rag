@@ -10,7 +10,7 @@
 
 Cache-Augmented Generation（CAG）把知识库一次性离线编码进长上下文 LLM 的 KV-Cache，推理阶段零检索、零延迟，直接读缓存输出答案。在 SQuAD 与 HotPotQA 多档规模实验中，CAG 的 BERTScore 均优于或持平传统 BM25/Dense RAG，且消除检索开销。
 
-![](https://github.com/user-attachments/assets/0cee1e53-bbd7-4bfc-97f9-f647c3625aee)
+![](https://i.imgur.com/aNdQZdl.png)
 
 
 ## 2025.04
@@ -23,7 +23,7 @@ Cache-Augmented Generation（CAG）把知识库一次性离线编码进长上下
 
 AlayaDB 提出面向长上下文 LLM 的统一数据底座：通过 KV-Cache 分块、向量索引与专用缓冲管理协同，将冷 KV 数据下沉至 CPU/SSD，热数据常驻 GPU；支持动态稀疏注意力查询（DIPR）、窗口缓存与上下文复用。实验在 ∞-Bench 43K–192K token 任务上，与全注意力相比 TTFT 最高提速 42×。AlayaDB 能够在保证服务等级目标（SLO）的同时，实现长上下文 LLM 推理的低资源消耗与高生成质量。
 
-![](https://github.com/user-attachments/assets/87ab98eb-bd26-49ce-b501-5587ba919b9f)
+![](https://i.imgur.com/hPIz9Q4.png)
 
 
 
@@ -37,7 +37,7 @@ AlayaDB 提出面向长上下文 LLM 的统一数据底座：通过 KV-Cache 分
 
 论文把 AI 记忆重新梳理为“表示-操作-主题”三层架构：先区分参数记忆与情境记忆，再定义 Consolidation 等六大原子操作，随后将能力映射到长期记忆、长上下文、参数修改、多源融合四大主题，并盘点 50+ 数据集、90+ 方法与 Replika 到 Mem0 的完整工具链，最终指出统一评估、KV效率、跨模态冲突与终身学习仍是未来突破口。
 
-![](https://github.com/user-attachments/assets/88724623-4389-4230-95d0-fa84a471fce4)
+![](https://i.imgur.com/lNcsT1Q.png)
 
 
 ## 2025.06
@@ -50,7 +50,7 @@ AlayaDB 提出面向长上下文 LLM 的统一数据底座：通过 KV-Cache 分
 
 Reasoning RAG 以“快思”式固定模块流水线与“慢想”式自主检索双轨并行。论文系统梳理两大范式下 Self-RAG、ReAct、DeepResearcher 等代表工作的架构、策略、工具及奖励设计，并指出现实 Web 环境端到端 RL 训练是通往可信、高效、开放世界推理 RAG 的关键。
 
-![](https://github.com/user-attachments/assets/78713272-29a4-4d85-80de-2179152fb80f)
+![](https://i.imgur.com/86dsow4.png)
 
 ### RetroInfer【时光压缩器】
 > **时光压缩器**：像一位把长篇连续剧剪成高能集锦的导演，先离线把整段 KV 历史切成“关键帧”存入向量仓库，推理时只回放与问题最相关的几幕，既保留剧情精髓，又把显存和算力开销压到最低，让超长上下文模型也能“秒回”任意时刻的细节。
@@ -61,4 +61,4 @@ Reasoning RAG 以“快思”式固定模块流水线与“慢想”式自主检
 
 RetroInfer 将 KV-Cache 视为向量仓库，提出 Wave Index（注意力感知向量索引）与 Wave Buffer（异构内存调度器）。推理时先用 Wave Index 的三区近似（稳态区 + 检索区 + 估计区）挑出最关键 token，再让注意力仅在 1.8% KV 上精确计算，其余用质心估计，复杂度从 O(n²) 降到 O(k·n)。实验显示在长上下文任务上，解码吞吐比全注意力提升 4.5×，比现有稀疏注意力再快 10.5×，显存占用<5%，精度与全注意力持平。
 
-![](https://github.com/user-attachments/assets/78713272-29a4-4d85-80de-2179152fb80f)
+![](https://i.imgur.com/Bxyx2kA.png)
